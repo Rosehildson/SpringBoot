@@ -1,23 +1,46 @@
 package com.hildson.ApiUdemy.domain;
 
-public class Categoria {
+import java.io.Serializable;
+import java.util.Objects;
 
+
+public class Categoria implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 /* === INCLUIDOS OS ATRIBUTOS BASICOS DA CLASSE === */
 		private Integer id;
 		private String nome;
 		
-/* === CRIANDO O MÉTODO VÁZIO === */
+/* === INCLUIDOS OS HASHCODE() AND EGUALS() === */		
+@Override
+		public int hashCode() {
+			return Objects.hash(id);
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			Categoria other = (Categoria) obj;
+			return Objects.equals(id, other.id);
+		}
+
+/* === INCLUIDO O MÉTODO VÁZIO === */
 	public Categoria() {
 	}
 	
-/* === SOURCES/CONSTRUCTOR USING FIELDS ===*/
+/* === INCLUIDOS OS CONSTRUCTOR USING FIELDS ===*/
 	public Categoria(Integer id, String nome) {
 		super();
 		this.id = id;
 		this.nome = nome;
 	}
 
-/* === SOURCES/GETTERS AND SETTERS === */
+/* === INCLUIDOS OS GETTERS AND SETTERS === */
 	public Integer getId() {
 		return id;
 	}
