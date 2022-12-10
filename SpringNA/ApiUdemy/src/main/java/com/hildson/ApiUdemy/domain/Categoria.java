@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 /* == INICIO --- SERIALIZABLE == */
 
@@ -29,7 +31,8 @@ import javax.persistence.ManyToMany;
 /* == FIM --- ATRIBUTOS BASICOS DA CLASSE == */
 /* == INICIO --- RELACIONAMENTO ENTRE TABELAS [MAPEAMENTO DO RELACIONAMENTO NO ENDPOINT PRODUTO] == */
 		
-		@ManyToMany(mappedBy = "categorias")
+		@JsonManagedReference						//tratamento de referencia ciclica, para barrar o loop de referencia entre categoria e produto com start em produtos.
+		@ManyToMany(mappedBy = "categorias")		//relacionamento MUITO PARA MUITOS, buscando o start no endpoint em produtos.
 		
 /* == FIM --- RELACIONAMENTO ENTRE TABELAS [MAPEAMENTO DO RELACIONAMENTO NO ENDPOINT PRODUTO] == */
 		

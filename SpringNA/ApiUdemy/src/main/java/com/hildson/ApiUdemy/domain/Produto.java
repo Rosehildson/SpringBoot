@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Produto implements Serializable {	
 	private static final long serialVersionUID = 1L;
@@ -25,7 +27,8 @@ public class Produto implements Serializable {
 	
 /* == INICIO --- RELACIONAMENTO ENTRE TABELAS [PRIMARY KEY AND FOREIGN KEY] ==*/	
 		
-		@ManyToMany
+		@JsonBackReference			//busca a referência do endpoint categoria, caso consultado la, entao desconsiderar essa consulta daqui.
+		@ManyToMany					//referência de relaciomentamento MUITOS PARA MUITOS.
 		@JoinTable(name = "PRODUTO_CATEGORIA",
 		joinColumns = @JoinColumn(name = "produto_id"),
 		inverseJoinColumns = @JoinColumn(name = "categoria_id")
